@@ -1,0 +1,13 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+
+# Ignore Working directory and any trailing ad-hoc scripts
+Working/
+*.py
+*.sh
+*.tcl
+!assets/code/*.tcl
