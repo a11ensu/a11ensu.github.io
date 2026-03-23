@@ -1,0 +1,25 @@
+---
+---
+
+@import 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* Custom light gray background for all code blocks and inline code */
+code, pre, pre.highlight, figure.highlight, div.highlighter-rouge, div.highlight {
+  background-color: #e8e8e8 !important;
+}
+
+/* Ensure code text color contrasts well in light gray background if in dark mode */
+[data-theme="dark"] code, 
+[data-theme="dark"] pre, 
+[data-theme="dark"] pre.highlight, 
+[data-theme="dark"] figure.highlight, 
+[data-theme="dark"] div.highlighter-rouge, 
+[data-theme="dark"] div.highlight {
+  background-color: #333333 !important; /* Dark gray for dark mode so it's readable */
+}
