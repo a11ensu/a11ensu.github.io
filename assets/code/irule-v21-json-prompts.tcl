@@ -1,3 +1,17 @@
+# =============================================================================
+# iRule: LLM System Prompt Injection via v21 JSON Profile
+# 
+# Author:   Allen Su
+# Version:  1.0.0
+# Date:     2026-03-23
+# Purpose:  Dynamically rewrite LLM system prompts and enforce strict security 
+#           policies natively via F5 BIG-IP v21 JSON profile events.
+# Usage:    Attach to a Virtual Server with a JSON profile enabled. Requires a 
+#           datagroup named 'dg_openai_tool_list'. 
+# Notes:    Operates on JSON payload elements directly to securely merge user 
+#           preferences with mandatory AI guardrails.
+# =============================================================================
+
 when RULE_INIT {
   set static::LOG_LEVEL "DEFAULT"
   set static::DEBUG_PROMPTS 0

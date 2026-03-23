@@ -1,19 +1,15 @@
 # =============================================================================
 # iRule: LLM System Prompt Injection / Replacement Template
 # 
-# Purpose:  Intercept requests to LLM chat completion APIs and either
-#           APPEND to or REPLACE the system prompt in the JSON payload.
-#
-# Usage:    1. Set mode to "append" or "replace"
-#           2. Set inject_text to the desired content (JSON-escaped)
-#           3. Apply this iRule to the virtual server
-#
-# Notes:
-#   - \n inside braces {} is the literal two-char sequence \ n,
-#     which is the correct JSON newline escape inside a JSON string.
-#   - Use string bytelength (not string length) for Content-Length
-#     because payloads may contain multi-byte UTF-8 characters.
-#   - HTTP::collect must be in HTTP_REQUEST to trigger HTTP_REQUEST_DATA.
+# Author:   Allen Su
+# Version:  1.0.0
+# Date:     2026-03-23
+# Purpose:  Intercept JSON requests to LLM completions APIs to securely append 
+#           or replace the system prompt without breaking strict JSON parsing.
+# Usage:    Apply this iRule to a standard Virtual Server. Modify the 'mode' 
+#           and 'inject_text' variables inside HTTP_REQUEST_DATA as needed.
+# Notes:    Uses string bytelength calculation to accurately adjust the HTTP 
+#           Content-Length header for multi-byte UTF-8 character compatibility.
 # =============================================================================
 
 when CLIENT_ACCEPTED {

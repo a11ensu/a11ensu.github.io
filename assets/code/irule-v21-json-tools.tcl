@@ -1,3 +1,18 @@
+# =============================================================================
+# iRule: LLM Agent Tool Calling Control via v21 JSON Profile
+# 
+# Author:   Allen Su
+# Version:  1.0.0
+# Date:     2026-03-23
+# Purpose:  Actively monitor and control which tool functions an LLM agent is 
+#           allowed to use, preventing unauthorized access to backend systems.
+# Usage:    Attach to a Virtual Server with a JSON profile enabled. Requires a 
+#           datagroup named 'dg_openai_tool_list'.
+# Notes:    Strips unauthorized tools from requests, validates conversation 
+#           history, and scrubs unapproved tool calls from the response payload 
+#           to provide full defense-in-depth protection.
+# =============================================================================
+
 when RULE_INIT {
   set static::LOG_LEVEL "DEFAULT"
   set static::DEBUG_PROMPTS 0
